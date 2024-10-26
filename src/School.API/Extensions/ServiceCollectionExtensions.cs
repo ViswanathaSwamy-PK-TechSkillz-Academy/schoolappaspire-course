@@ -7,10 +7,10 @@ using School.API.Repositories;
 
 namespace School.API.Extensions;
 
-public static class DependedServicesExtensions
+public static class ServiceCollectionExtensions
 {
 
-    public static IServiceCollection ConfigureDependedServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddConfiguredServices(this IServiceCollection services, IConfiguration configuration)
     {
         string sqlConnectionString = configuration.GetConnectionString("SqlDbConnStr") ?? configuration.GetConnectionString(AzSQLServerDatabase.Name)!;
 

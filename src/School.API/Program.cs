@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 // Add services to the container.
-_ = builder.Services.ConfigureDependedServices(builder.Configuration);
+_ = builder.Services.AddConfiguredServices(builder.Configuration);
 
 var app = builder.Build();
 
