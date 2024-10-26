@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using School.API.ApplicationCore.Interfaces;
 using School.API.Business;
 using School.API.Configurations;
 using School.API.Persistence;
 using School.API.Repositories;
-using Serilog;
 
 namespace School.API.Extensions;
 
