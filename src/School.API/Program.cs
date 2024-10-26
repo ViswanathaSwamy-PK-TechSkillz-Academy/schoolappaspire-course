@@ -10,6 +10,6 @@ _ = builder.Services.AddConfiguredServices(builder.Configuration);
 
 var app = builder.Build();
 
-_ = app.ConfigureHttpRequestPipeline();
+_ = app.UseConfiguredHttpRequestPipeline();
 
 app.Run();

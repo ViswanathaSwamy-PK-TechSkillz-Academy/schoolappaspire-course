@@ -7,7 +7,7 @@ namespace School.API.Extensions;
 public static class HttpRequestPipelineExtensions
 {
 
-    public static WebApplication ConfigureHttpRequestPipeline(this WebApplication app)
+    public static WebApplication UseConfiguredHttpRequestPipeline(this WebApplication app)
     {
         _ = app.MapDefaultEndpoints();
 
