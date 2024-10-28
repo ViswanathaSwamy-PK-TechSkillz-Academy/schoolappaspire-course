@@ -17,4 +17,17 @@ public class CoursesBusiness(ICoursesRepository coursesRepository, ILogger<Cours
         return ApiResponseDto<IReadOnlyCollection<CourseDto>>.Create(courses);
     }
 
+    public async Task<ApiResponseDto<CourseDto?>> GetById(Guid courseId)
+    {
+        _logger.LogInformation("Starting CoursesBusiness::GetById({courseId})", courseId);
+
+        var course = await _coursesRepository.GetById(courseId);
+        if (course == null)
+        {
+            _logger.LogWarning("Course with ID {courseId} not found.", courseId);
+            return ApiResponseDto<CourseDto?>.Create(null, success: false, message: "Course not found");
+        }
+
+        return ApiResponseDto<CourseDto?>.Create(course);
+    }
 }
