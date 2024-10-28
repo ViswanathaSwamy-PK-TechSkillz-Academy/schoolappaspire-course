@@ -14,9 +14,23 @@ public class CoursesRepository(SchoolDbContext schoolDbContext, IMapper mapper, 
 
     public async Task<IReadOnlyCollection<CourseDto>> GetAllCourses()
     {
-        _logger.LogInformation($"Starting CoursesRepository::GetAllCourses()");
+        _logger.LogInformation("Starting CoursesRepository::GetAllCourses()");
 
         return _mapper.Map<IReadOnlyCollection<CourseDto>>(await _schoolDbContext.Courses.ToListAsync());
+    }
+
+    public async Task<CourseDto?> GetById(Guid courseId)
+    {
+        _logger.LogInformation("Starting CoursesRepository::GetById({courseId})", courseId);
+
+        var course = await _schoolDbContext.Courses.FindAsync(courseId);
+        if (course == null)
+        {
+            _logger.LogWarning($"Course with ID {courseId} not found.");
+            return null;
+        }
+
+        return _mapper.Map<CourseDto>(course);
     }
 
 }

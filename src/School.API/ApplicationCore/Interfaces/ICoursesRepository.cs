@@ -5,5 +5,7 @@ namespace School.API.ApplicationCore.Interfaces;
 public interface ICoursesRepository
 {
     Task<IReadOnlyCollection<CourseDto>> GetAllCourses();
+
+    Task<CourseDto?> GetById(Guid courseId);
 }
 
