@@ -8,6 +8,6 @@ public static partial class Constants
 
         public static string Root => "/";
 
-        public static string ActionById => "/{Id}";
+        public static string ActionById => "/{courseId}";
     }
 }

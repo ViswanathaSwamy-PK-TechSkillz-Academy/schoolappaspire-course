@@ -22,6 +22,21 @@ public static class CourseEndpoints
           .ProducesProblem(StatusCodes.Status500InternalServerError)
           .WithOpenApi();
 
+        _ = group.MapGet(CoursesRoutes.ActionById, async ([FromRoute] Guid courseId, [FromServices] ICoursesBusiness coursesBusiness) =>
+        {
+            var result = await coursesBusiness.GetById(courseId);
+            if (!result.Success)
+            {
+                return Results.NotFound(result);
+            }
+            return Results.Ok(result);
+        })
+        .AllowAnonymous()
+        .WithName("GetCourseById")
+        .Produces<ApiResponseDto<CourseDto>>(StatusCodes.Status200OK)
+        .ProducesProblem(StatusCodes.Status404NotFound)
+        .ProducesProblem(StatusCodes.Status500InternalServerError)
+        .WithOpenApi();
     }
 
 }
